@@ -1,6 +1,6 @@
 import {ArgumentsHost, Catch, ExceptionFilter, HttpException} from "@nestjs/common";
 import {Request, Response} from "express";
-import {ErrorCodes} from "./error.enum";
+import {ErrorCodes} from "../enums/error.enum";
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter<HttpException> {

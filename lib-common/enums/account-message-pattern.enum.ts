@@ -20,9 +20,7 @@ export enum AccountMessagePatterns {
   ACCOUNT_adminUserGoogleLogin = 'ACCOUNT_adminUserGoogleLogin',
   ACCOUNT_adminUserLogin = 'ACCOUNT_adminUserLogin',
   ACCOUNT_adminUserRefreshToken = 'ACCOUNT_adminUserRefreshToken',
-
   ACCOUNT_playerUserGoogleLogin = 'ACCOUNT_playerUserGoogleLogin',
-
   SYSTEM_findPermissionList = 'SYSTEM_findPermissionList',
   SYSTEM_findMenuList = 'SYSTEM_findMenuList',
   SYSTEM_saveRole = 'SYSTEM_saveRole',
