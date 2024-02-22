@@ -1,13 +1,21 @@
-import {CanActivate, ExecutionContext, HttpStatus, Injectable} from "@nestjs/common";
-import {Reflector} from "@nestjs/core";
-import {Request} from "express";
-import {IS_PUBLIC_KEY} from "./auth.decorator";
-import {isEmpty, isNotEmpty} from "class-validator";
-import {AuthService} from "../auth.service";
-import {Payload} from "../dto";
+import {
+  CanActivate,
+  ExecutionContext,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { Request } from 'express';
+import { IS_PUBLIC_KEY } from './auth.decorator';
+import { isEmpty, isNotEmpty } from 'class-validator';
+import { AuthService } from '../auth.service';
+import { Payload } from '../dto';
 
-import {ClientHttpException, convertErrorMessage, ErrorCodes} from '@birdgang/lib-common';
-
+import {
+  ClientHttpException,
+  convertErrorMessage,
+  ErrorCodes,
+} from '@birdgang/lib-common';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -17,8 +25,11 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    console.log("canActivate  start...");
-    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [context.getHandler(), context.getClass()]);
+    console.log('canActivate  start...');
+    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
     if (isPublic) {
       return true;
     }
@@ -33,25 +44,33 @@ export class AuthGuard implements CanActivate {
       const payload = new Payload();
       payload.username = sessionUserId;
       payload.sub = sessionUserId;
-      request["user"] = payload;
+      request['user'] = payload;
       return true;
     }
     const token = this.extractTokenFromHeader(request);
     if (!token) {
-      throw new ClientHttpException(HttpStatus.UNAUTHORIZED, convertErrorMessage(ErrorCodes.AUT_ERROR_003), null);
+      throw new ClientHttpException(
+        HttpStatus.UNAUTHORIZED,
+        convertErrorMessage(ErrorCodes.AUT_ERROR_003),
+        null,
+      );
     }
     try {
       const payload = await this.authService.tokenVerify(token);
-      request["user"] = payload;
+      request['user'] = payload;
     } catch {
-      throw new ClientHttpException(HttpStatus.UNAUTHORIZED, convertErrorMessage(ErrorCodes.AUT_ERROR_003), null);
+      throw new ClientHttpException(
+        HttpStatus.UNAUTHORIZED,
+        convertErrorMessage(ErrorCodes.AUT_ERROR_003),
+        null,
+      );
     }
     return true;
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
-    const [type, token] = request.headers.authorization?.split(" ") ?? [];
-    return type === "Bearer" ? token : undefined;
+    const [type, token] = request.headers.authorization?.split(' ') ?? [];
+    return type === 'Bearer' ? token : undefined;
   }
 
   private extractSessionUserIdFromHeader(request: Request): string | undefined {

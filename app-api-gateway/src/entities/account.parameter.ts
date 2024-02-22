@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsEnum, IsNumber, IsString } from "class-validator";
-import { ClientAccessType } from "../enum/account.enum";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsEnum, IsNumber, IsString } from 'class-validator';
+import { ClientAccessType } from '../enums/account.enum';
 
 export class EditTokenParameter {
   @ApiProperty()
@@ -15,7 +15,11 @@ export class EditTokenParameter {
   @IsString()
   jwtRefreshToken: string;
 
-  static from(accessUserId: number, accessType: ClientAccessType, jwtRefreshToken: string) {
+  static from(
+    accessUserId: number,
+    accessType: ClientAccessType,
+    jwtRefreshToken: string,
+  ) {
     const parameter = new EditTokenParameter();
     parameter.accessUserId = accessUserId;
     parameter.accessType = accessType;

@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { UserDto } from "./user.dto";
+import { ApiProperty } from '@nestjs/swagger';
+import { UserDto } from './user.dto';
 
 export class UserProfileDto {
   @ApiProperty()
@@ -11,7 +11,11 @@ export class UserProfileDto {
   @ApiProperty()
   ongoingTicketCount: number;
 
-  static from(userDto: UserDto, assetBalance: number, ongoingTicketCount: number) {
+  static from(
+    userDto: UserDto,
+    assetBalance: number,
+    ongoingTicketCount: number,
+  ) {
     const newClass = new UserProfileDto();
     newClass.userDto = userDto;
     newClass.assetBalance = assetBalance;
