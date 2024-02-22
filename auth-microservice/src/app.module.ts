@@ -1,12 +1,13 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { PlayerService } from './player/player.service';
-import { PlayerService } from './services/player/player.service';
+import { forwardRef, Module } from '@nestjs/common';
+import { PlayerModule } from './player/player.module';
+import { SellerModule } from './seller/seller.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService, PlayerService],
+  imports: [
+    // forwardRef(() => AdminModule),
+    // forwardRef(() => PlayerModule),
+    // forwardRef(() => SellerModule),
+  ],
 })
 export class AppModule {}

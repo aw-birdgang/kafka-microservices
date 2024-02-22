@@ -1,6 +1,6 @@
 import { IsEnum, IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { ClientAccessType } from './account.enum';
+import { ClientAccessType } from '../enums/account.enum';
 
 export class AdminUserFiltersParameter {
   @ApiProperty()
