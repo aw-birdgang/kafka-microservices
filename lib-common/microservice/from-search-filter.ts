@@ -3,13 +3,21 @@ export class SearchFilterSort {
   filter: Record<string, any>;
   sort: Record<string, any>;
 
-  constructor(searchKeywords: string, filter: Record<string, any>, sort: Record<string, any>) {
+  constructor(
+    searchKeywords: string,
+    filter: Record<string, any>,
+    sort: Record<string, any>,
+  ) {
     this.filter = filter;
     this.sort = sort;
     this.searchKeywords = searchKeywords;
   }
 
-  static from(searchKeywords: string, filter: Record<string, any>, sort: Record<string, any>) {
+  static from(
+    searchKeywords: string,
+    filter: Record<string, any>,
+    sort: Record<string, any>,
+  ) {
     return new SearchFilterSort(searchKeywords, filter, sort);
   }
 }
@@ -41,6 +49,6 @@ export class Filter {
 }
 
 export enum SortingType {
-  ASC = "ASC",
-  DESC = "DESC",
+  ASC = 'ASC',
+  DESC = 'DESC',
 }

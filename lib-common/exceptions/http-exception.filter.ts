@@ -1,6 +1,11 @@
-import {ArgumentsHost, Catch, ExceptionFilter, HttpException} from "@nestjs/common";
-import {Request, Response} from "express";
-import {ErrorCodes} from "../enums/error.enum";
+import {
+  ArgumentsHost,
+  Catch,
+  ExceptionFilter,
+  HttpException,
+} from '@nestjs/common';
+import { Request, Response } from 'express';
+import { ErrorCodes } from '../enums';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter<HttpException> {
@@ -13,12 +18,12 @@ export class HttpExceptionFilter implements ExceptionFilter<HttpException> {
     const exceptionResponse = exception.getResponse();
 
     let errorCode = ErrorCodes.SYS_ERROR_001;
-    let errorMessage = "";
-    if (typeof exceptionResponse === "string") {
+    let errorMessage = '';
+    if (typeof exceptionResponse === 'string') {
       errorMessage = exceptionResponse;
-    } else if (typeof exceptionResponse === "object") {
-      errorCode = exceptionResponse["errorCode"];
-      errorMessage = exceptionResponse["errorMessage"];
+    } else if (typeof exceptionResponse === 'object') {
+      errorCode = exceptionResponse['errorCode'];
+      errorMessage = exceptionResponse['errorMessage'];
     }
 
     const body = {

@@ -1,4 +1,4 @@
 export enum LanguageCode {
-  ENGLISH = "en",
-  KOREAN = "ko",
+  ENGLISH = 'en',
+  KOREAN = 'ko',
 }
