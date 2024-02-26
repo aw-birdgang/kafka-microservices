@@ -39,10 +39,24 @@ my-common-project/
 # dependency - typeorm
 ````
 
+"@nestjs/axios": "^3.0.2",
+"@nestjs/common": "^10.0.0",
+"@nestjs/config": "^3.2.0",
+"@nestjs/core": "^10.0.0",
+"@nestjs/platform-express": "^10.0.0",
+"@nestjs/terminus": "^10.2.3",
+"@nestjs/typeorm": "^10.0.2",
+"amqplib": "^0.10.3",
 "i18n": "^0.15.1",
 "iterare": "1.2.1",
+"kafkajs": "^2.2.4",
 "nestjs-i18n": "^10.4.5",
-
+"reflect-metadata": "^0.1.13",
+"tslib": "2.6.2",
+"typeorm": "^0.3.17",
+"uid": "2.0.2"
+    
+    
 ````
 
 
@@ -71,6 +85,7 @@ src/
 
 # 배포
 ``````
+npm run build
 npm publish --access public
 
 ``````
@@ -83,4 +98,21 @@ npm publish --access public
 "scripts": {
   "build": "nest build && cp -r src/i18n dist/"
 }
+``````
+
+
+
+
+# 특징
+``````
+
+인증 및 권한 부여: JWT나 OAuth 같은 표준 인증 메커니즘을 구현한 라이브러리.
+로깅: 서비스 간 통일된 로깅 포맷과 레벨 설정을 위한 공통 로깅 라이브러리.
+에러 핸들링: 공통 에러 응답 포맷과 예외 처리 메커니즘.
+헬스 체크: 서비스의 상태를 모니터링하는 데 사용되는 표준 헬스 체크 엔드포인트.
+데이터 형식 및 검증: JSON, XML 같은 데이터 형식과 스키마 검증을 위한 라이브러리.
+클라이언트 라이브러리: 다른 서비스와의 통신을 위한 REST, gRPC 클라이언트 라이브러리.
+메시지 큐와 이벤트 스트리밍: Kafka, RabbitMQ 같은 메시지 브로커와의 통합을 위한 클라이언트 라이브러리나 추상화 레이어.
+설정 관리: 중앙화된 설정 관리를 위한 라이브러리나 클라이언트.
+
 ``````
