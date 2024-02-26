@@ -1,11 +1,31 @@
-import { Injectable } from '@nestjs/common';
-import { ConfigService as NestConfigService } from '@nestjs/config';
+import * as dotenv from 'dotenv';
+import * as fs from 'fs';
+import {Logger} from "@nestjs/common";
 
-@Injectable()
 export class ConfigService {
-    constructor(private nestConfigService: NestConfigService) {}
+    private readonly envConfig: { [key: string]: any };
 
-    get(key: string): string {
-        return this.nestConfigService.get<string>(key);
+    private readonly logger = new Logger(ConfigService.toString());
+
+    constructor() {
+        this.envConfig = {};
+        const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : process.env.NODE_ENV === 'development' ? '.env.dev' : '.env';
+        this.logger.log("ConfigService > envFile :: " + envFile);
+        this.envConfig = dotenv.parse(fs.readFileSync(envFile));
+        // const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : env === 'development' ? '.env.dev' : '.env';
+        const appEnv = this.get('APP_ENV');
+        this.logger.log("ConfigService > appEnv :: " + appEnv);
+    }
+
+    get(key: string): any {
+        return this.envConfig[key];
+    }
+
+    isEnv(env: string): boolean {
+        return this.nodeEnv === env;
+    }
+
+    get nodeEnv(): string {
+        return process.env.NODE_ENV || 'development';
     }
 }
