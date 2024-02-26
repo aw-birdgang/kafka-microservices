@@ -1,6 +1,6 @@
 {
   "name": "@birdgang/lib-common",
-  "version": "0.0.8",
+  "version": "0.2.0",
   "description": "",
   "author": "birdgang",
   "private": false,
@@ -9,8 +9,10 @@
     "type": "git",
     "url": "https://github.com/aw-birdgang/kafka-microservices/tree/main/lib-common"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "nest build",
+    "build": "nest build && cp -r src/i18n dist/language",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -29,10 +31,13 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/terminus": "^10.2.3",
     "@nestjs/typeorm": "^10.0.2",
+    "i18n": "^0.15.1",
     "iterare": "1.2.1",
+    "nestjs-i18n": "^10.4.5",
+    "reflect-metadata": "^0.1.13",
     "tslib": "2.6.2",
-    "uid": "2.0.2",
-    "reflect-metadata": "^0.1.13"
+    "typeorm": "^0.3.17",
+    "uid": "2.0.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
