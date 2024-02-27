@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { EntityManager, Repository } from 'typeorm';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
-import { GameWinningRule } from './entities/game-winning-rule.entity';
+import { GameWinningRule } from '../entities/game-winning-rule.entity';
 
 @Injectable()
 export class GameWinningRuleService {

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Game } from './entities/game.entity';
+import { Game } from '../entities/game.entity';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, Repository } from 'typeorm';
 
