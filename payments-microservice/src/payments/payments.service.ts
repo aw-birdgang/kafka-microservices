@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { PaypalPaymentService } from '../services/paypal/paypal-payment.service';
+import { PaypalPaymentService } from '../paypal/services/paypal-payment.service';
 import { CreatePaypalOrderDto } from '../dtos/paypal';
 
 @Injectable()

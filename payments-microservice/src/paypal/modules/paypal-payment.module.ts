@@ -4,17 +4,17 @@ import {
   PaypalModuleAsyncOptions,
   PaypalModuleOptions,
   PaypalModuleOptionsFactory,
-} from './interfaces/paypal-module-options';
+} from '../../interfaces/paypal-module-options';
 import {
   PAYPAL_AUTHORIZATION_SERVICE_INSTANCE_TOKEN,
   PAYPAL_AXIOS_INSTANCE_TOKEN,
   PAYPAL_MODULE_OPTIONS,
   PAYPAL_PAYMENT_SERVICE_INSTANCE_TOKEN,
   PAYPAL_UTILS_SERVICE_INSTANCE_TOKEN,
-} from './constants/paypal-constants';
-import { PaypalPaymentService } from './services/paypal/paypal-payment.service';
-import { PaypalAuthorizationService } from './services/paypal/paypal-authorization.service';
-import { PaypalUtilsService } from './services/paypal/paypal-utils.service';
+} from '../../constants/paypal-constants';
+import { PaypalPaymentService } from '../services/paypal-payment.service';
+import { PaypalAuthorizationService } from '../services/paypal-authorization.service';
+import { PaypalUtilsService } from '../services/paypal-utils.service';
 
 @Global()
 @Module({

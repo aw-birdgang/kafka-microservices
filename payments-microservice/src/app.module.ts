@@ -1,6 +1,6 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { forwardRef, Module } from '@nestjs/common';
-import { PaypalPaymentModule } from './paypal-payment.module';
+import { PaypalPaymentModule } from './paypal/modules/paypal-payment.module';
 import configurations from './configurations';
 import { PaymentsModule } from './payments/payments.module';
 
