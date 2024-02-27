@@ -1,10 +1,31 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { forwardRef, Module } from '@nestjs/common';
+import { PaypalPaymentModule } from './paypal-payment.module';
+import configurations from './configurations';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      expandVariables: true,
+      load: [configurations],
+    }),
+    PaypalPaymentModule.register({
+      clientId: process.env.PAYPAL_CLIENT_ID,
+      clientSecret: process.env.PAYPAL_CLIENT_SECRET,
+      environment: process.env.PAYPAL_ENVIRONMENT as 'sandbox' | 'live',
+    }),
+    PaypalPaymentModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        return {
+          ...configService.get('paypalModuleInterface'),
+        };
+      },
+    }),
+    //
+    forwardRef(() => PaymentsModule),
+  ],
 })
 export class AppModule {}
