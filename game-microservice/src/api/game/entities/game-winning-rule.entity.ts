@@ -1,34 +1,41 @@
-import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { GameWinningRuleDto } from "../dto/game-winning-rule.dto";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  Index,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { GameWinningRuleDto } from '../dto/game-winning-rule.dto';
 
-@Entity("game_winning_rule")
-@Index("uk1_game_winning_rule", ["gameId", "ranking"], { unique: true })
+@Entity('game_winning_rule')
+@Index('uk1_game_winning_rule', ['gameId', 'ranking'], { unique: true })
 export class GameWinningRule {
-  @PrimaryGeneratedColumn({ name: "id", type: "int" })
+  @PrimaryGeneratedColumn({ name: 'id', type: 'int' })
   id: number;
 
-  @Column({ name: "game_id", type: "int" })
+  @Column({ name: 'game_id', type: 'int' })
   gameId: number;
 
-  @Column({ name: "ranking", type: "tinyint" })
+  @Column({ name: 'ranking', type: 'tinyint' })
   ranking: number;
 
-  @Column({ name: "ranking_text_id", type: "int", default: 0 })
+  @Column({ name: 'ranking_text_id', type: 'int', default: 0 })
   rankingTextId: number;
 
-  @Column({ name: "matching_text_id", type: "int", default: 0 })
+  @Column({ name: 'matching_text_id', type: 'int', default: 0 })
   matchingTextId: number;
 
-  @Column({ name: "odds_text_id", type: "int", default: 0 })
+  @Column({ name: 'odds_text_id', type: 'int', default: 0 })
   oddsTextId: number;
 
-  @Column({ name: "prize_amount_text_id", type: "int", default: 0 })
+  @Column({ name: 'prize_amount_text_id', type: 'int', default: 0 })
   prizeAmountTextId: number;
 
-  @CreateDateColumn({ name: "created_at", type: "timestamp" })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: "updated_at", type: "timestamp" })
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: Date;
 
   static from(

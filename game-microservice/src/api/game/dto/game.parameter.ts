@@ -1,6 +1,6 @@
-import { IsNumber } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
-import { CycleCode } from "../enums/game.enum";
+import { IsNumber } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { CycleCode } from '../enums/game.enum';
 
 export class GameParameter {
   @ApiProperty()

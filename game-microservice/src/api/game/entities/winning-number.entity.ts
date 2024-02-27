@@ -1,36 +1,42 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
-import { WinningNumberDto } from "../dto/winning-number.dto";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { WinningNumberDto } from '../dto/winning-number.dto';
 
-@Entity("winning_number")
+@Entity('winning_number')
 export class WinningNumber {
-  @PrimaryColumn({ name: "round_id", type: "int" })
+  @PrimaryColumn({ name: 'round_id', type: 'int' })
   roundId: number;
 
-  @Column({ name: "ball_1", type: "tinyint" })
+  @Column({ name: 'ball_1', type: 'tinyint' })
   ball1: number;
 
-  @Column({ name: "ball_2", type: "tinyint" })
+  @Column({ name: 'ball_2', type: 'tinyint' })
   ball2: number;
 
-  @Column({ name: "ball_3", type: "tinyint" })
+  @Column({ name: 'ball_3', type: 'tinyint' })
   ball3: number;
 
-  @Column({ name: "ball_4", type: "tinyint" })
+  @Column({ name: 'ball_4', type: 'tinyint' })
   ball4: number;
 
-  @Column({ name: "ball_5", type: "tinyint" })
+  @Column({ name: 'ball_5', type: 'tinyint' })
   ball5: number;
 
-  @Column({ name: "ball_6", type: "tinyint" })
+  @Column({ name: 'ball_6', type: 'tinyint' })
   ball6: number;
 
-  @Column({ name: "ball_bonus", type: "tinyint" })
+  @Column({ name: 'ball_bonus', type: 'tinyint' })
   ballBonus: number;
 
-  @CreateDateColumn({ name: "created_at", type: "timestamp" })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: "updated_at", type: "timestamp" })
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: Date;
 
   static from(

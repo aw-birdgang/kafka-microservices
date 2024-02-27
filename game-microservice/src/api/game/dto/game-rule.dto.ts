@@ -1,6 +1,5 @@
-import { IsDate, IsEnum, IsNumber, IsString } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
-import { GameStatus } from "../enums/game.enum";
+import { IsDate, IsNumber } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class GameRuleDto {
   @ApiProperty()

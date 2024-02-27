@@ -1,44 +1,51 @@
-import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { isEmpty } from "class-validator";
-import { BatchRoundRankingDto } from "../dto/batch-round-ranking.dto";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  Index,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { isEmpty } from 'class-validator';
+import { BatchRoundRankingDto } from '../dto/batch-round-ranking.dto';
 
-@Entity("batch_round_ranking")
-@Index("uk1_batch_round_ranking", ["batchJobId", "ranking"], { unique: true })
+@Entity('batch_round_ranking')
+@Index('uk1_batch_round_ranking', ['batchJobId', 'ranking'], { unique: true })
 export class BatchRoundRanking {
-  @PrimaryGeneratedColumn({ name: "id", type: "int" })
+  @PrimaryGeneratedColumn({ name: 'id', type: 'int' })
   id: number;
 
-  @Column({ name: "batch_job_id", type: "int" })
+  @Column({ name: 'batch_job_id', type: 'int' })
   batchJobId: number;
 
-  @Column({ name: "ranking", type: "tinyint" })
+  @Column({ name: 'ranking', type: 'tinyint' })
   ranking: number;
 
-  @Column({ name: "total_amount", type: "int" })
+  @Column({ name: 'total_amount', type: 'int' })
   totalAmount: number;
 
-  @Column({ name: "total_quantity", type: "int" })
+  @Column({ name: 'total_quantity', type: 'int' })
   totalQuantity: number;
 
-  @Column({ name: "prize_amount_per_ticket", type: "int" })
+  @Column({ name: 'prize_amount_per_ticket', type: 'int' })
   prizeAmountPerTicket: number;
 
-  @Column({ name: "payout_prize_amount", type: "int" })
+  @Column({ name: 'payout_prize_amount', type: 'int' })
   payoutPrizeAmount: number;
 
-  @Column({ name: "payout_prize_quantity", type: "int" })
+  @Column({ name: 'payout_prize_quantity', type: 'int' })
   payoutPrizeQuantity: number;
 
-  @Column({ name: "not_payout_prize_amount", type: "int" })
+  @Column({ name: 'not_payout_prize_amount', type: 'int' })
   notPayoutPrizeAmount: number;
 
-  @Column({ name: "not_payout_prize_quantity", type: "int" })
+  @Column({ name: 'not_payout_prize_quantity', type: 'int' })
   notPayoutPrizeQuantity: number;
 
-  @CreateDateColumn({ name: "created_at", type: "timestamp" })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: "updated_at", type: "timestamp" })
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: Date;
 
   static new(batchRoundRanking: BatchRoundRanking) {
@@ -77,6 +84,8 @@ export class BatchRoundRanking {
     if (isEmpty(batchRoundRankingList) || batchRoundRankingList.length <= 0) {
       return;
     }
-    return batchRoundRankingList.map((value) => BatchRoundRanking.new(value).toBatchRoundRankingDto());
+    return batchRoundRankingList.map((value) =>
+      BatchRoundRanking.new(value).toBatchRoundRankingDto(),
+    );
   }
 }

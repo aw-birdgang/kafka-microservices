@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNumber } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDate, IsNumber } from 'class-validator';
 
 export class BatchJobDto {
   @ApiProperty()

@@ -1,6 +1,6 @@
-import { IsDate, IsEnum, IsNumber } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
-import { CycleCode, RoundStatus } from "../../game/enums/game.enum";
+import { IsDate, IsEnum, IsNumber } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { CycleCode, RoundStatus } from '../../game/enums/game.enum';
 
 export class RoundWinningNumberDto {
   @ApiProperty()

@@ -1,25 +1,25 @@
 export enum GameType {
-  LOTTERY = "lottery",
+  LOTTERY = 'lottery',
 }
 
 export enum GameStatus {
-  ACTIVE = "active",
-  INACTIVE = "inactive",
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
 }
 
 export enum CycleUnit {
-  WEEKLY = "weekly",
+  WEEKLY = 'weekly',
 }
 
 export enum RoundStatus {
-  READY = "ready",
-  ACTIVE = "active",
-  INACTIVE = "inactive",
+  READY = 'ready',
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
 }
 
 export enum CycleCode {
-  WEEKLY = "weekly",
-  TEN30 = "ten30",
-  FIFTEEN30 = "fifteen30",
-  TWENTY30 = "twenty30",
+  WEEKLY = 'weekly',
+  TEN30 = 'ten30',
+  FIFTEEN30 = 'fifteen30',
+  TWENTY30 = 'twenty30',
 }

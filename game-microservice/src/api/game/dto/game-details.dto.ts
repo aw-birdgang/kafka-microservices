@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { GameLanguageDto } from "./game-language.dto";
-import { GameWinningRuleLanguageDto } from "./game-winning-rule-language.dto";
+import { ApiProperty } from '@nestjs/swagger';
+import { GameLanguageDto } from './game-language.dto';
+import { GameWinningRuleLanguageDto } from './game-winning-rule-language.dto';
 
 export class GameDetailsDto {
   @ApiProperty()
@@ -8,7 +8,6 @@ export class GameDetailsDto {
 
   @ApiProperty()
   gameWinningRuleLanguageList: GameWinningRuleLanguageDto[];
-
 
   static from(
     gameLanguageDto: GameLanguageDto,
