@@ -60,16 +60,6 @@ my-common-project/
 ````
 
 
-# .npmignore
-``````
-
-node_modules/
-src/
-*.test.ts
-*.spec.ts
-
-``````
-
 
 # .npmignore
 ``````

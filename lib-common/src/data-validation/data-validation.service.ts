@@ -3,8 +3,8 @@ import { validateOrReject } from 'class-validator'; // 예시용, 실제 구현�
 
 @Injectable()
 export class DataValidationService {
-    async validate(data: any) {
-        // 여기에 데이터 검증 로직 구현
-        await validateOrReject(data);
-    }
+  async validate(data: any) {
+    // 여기에 데이터 검증 로직 구현
+    await validateOrReject(data);
+  }
 }
