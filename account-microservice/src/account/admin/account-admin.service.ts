@@ -4,6 +4,7 @@ import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { AdminUser } from './entities/admin-user.entity';
 import { AccountRegisterService } from '../register/account-register.service';
 import {
+  CustomRpcException,
   ErrorCodes,
   PaginationMeta,
   TcpPaginationRequest,
@@ -201,7 +202,7 @@ export class AccountAdminService {
       createAdminUserDto.username,
     );
     if (isNotEmpty(checkAdminUser)) {
-      throw new BusinessRpcException(ErrorCodes.BUS_ERROR_007);
+      throw new CustomRpcException(ErrorCodes.BUS_ERROR_007);
     }
     const companyId = Number(1);
     const passwordHash = createAdminUserDto.password;
@@ -215,7 +216,7 @@ export class AccountAdminService {
     console.log('create newAdminUser -> ', newAdminUser);
     const adminUser = await this.adminUserRepository.save(newAdminUser);
     if (isEmpty(adminUser)) {
-      throw new BusinessRpcException(ErrorCodes.BUS_ERROR_008);
+      throw new CustomRpcException(ErrorCodes.BUS_ERROR_008);
     }
     console.log('create adminUser -> ', adminUser);
 
@@ -231,7 +232,7 @@ export class AccountAdminService {
       ),
     );
     if (isEmpty(clientRegister)) {
-      throw new BusinessRpcException(ErrorCodes.BUS_ERROR_008);
+      throw new CustomRpcException(ErrorCodes.BUS_ERROR_008);
     }
 
     return adminUser;
@@ -240,22 +241,21 @@ export class AccountAdminService {
   async edit(adminUser: AdminUser): Promise<AdminUser> {
     const checkAdminUser = await this.findById(adminUser.id);
     if (isEmpty(checkAdminUser)) {
-      throw new BusinessRpcException(ErrorCodes.BUS_ERROR_005);
+      throw new CustomRpcException(ErrorCodes.BUS_ERROR_005);
     }
     adminUser.companyId = 1;
     adminUser.passwordHash = checkAdminUser.passwordHash;
     const editAdminUser = await this.adminUserRepository.save(adminUser);
     if (isEmpty(editAdminUser)) {
-      throw new BusinessRpcException(ErrorCodes.BUS_ERROR_009);
+      throw new CustomRpcException(ErrorCodes.BUS_ERROR_009);
     }
-    console.log('edit adminUser -> ', editAdminUser);
     const success = await this.accountRegisterService.editToken(
       editAdminUser.id,
       ClientAccessType.ADMIN_USER,
       null,
     );
     if (!success) {
-      throw new BusinessRpcException(ErrorCodes.BUS_ERROR_009);
+      throw new CustomRpcException(ErrorCodes.BUS_ERROR_009);
     }
 
     return editAdminUser;
@@ -267,12 +267,10 @@ export class AccountAdminService {
     const adminUser = await this.create(
       createAdminUserRoleDto.createAdminUserDto,
     );
-    console.log('createAdminUserRole  adminUser -> ', adminUser);
     const role = await this.roleService.findById(createAdminUserRoleDto.roleId);
     if (isEmpty(role)) {
-      throw new BusinessRpcException(ErrorCodes.BUS_ERROR_011);
+      throw new CustomRpcException(ErrorCodes.BUS_ERROR_011);
     }
-    console.log('createAdminUserRole  role -> ', role);
     await this.adminRoleService.create(
       AdminRoleDto.from(adminUser.id, createAdminUserRoleDto.roleId),
     );

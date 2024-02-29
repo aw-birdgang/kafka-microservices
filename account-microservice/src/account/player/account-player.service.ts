@@ -8,7 +8,11 @@ import { isEmpty, isNotEmpty } from 'class-validator';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ClientRegister } from '../register/entities/client-register.entity';
 import { ClientAccessType } from '../account.enum';
-import { TcpRequest } from '@birdgang/lib-common';
+import {
+  CustomRpcException,
+  ErrorCodes,
+  TcpRequest,
+} from '@birdgang/lib-common';
 import { PlayerUserSocialDto } from './dto/player-user-social.dto';
 
 @Injectable()
@@ -42,7 +46,7 @@ export class AccountPlayerService {
   async create(createUserDto: CreateUserDto): Promise<PlayerUser> {
     const checkUser = await this.findByUsername(createUserDto.username);
     if (isNotEmpty(checkUser)) {
-      throw new BusinessRpcException(ErrorCodes.BUS_ERROR_007);
+      throw new CustomRpcException(ErrorCodes.BUS_ERROR_007);
     }
     const passwordHash = createUserDto.password;
     const newUser = PlayerUser.from(
@@ -67,7 +71,7 @@ export class AccountPlayerService {
       ),
     );
     if (isEmpty(clientRegister)) {
-      throw new BusinessRpcException(ErrorCodes.BUS_ERROR_006);
+      throw new CustomRpcException(ErrorCodes.BUS_ERROR_006);
     }
 
     return user;

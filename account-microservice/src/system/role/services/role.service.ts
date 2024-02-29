@@ -13,7 +13,7 @@ import {
   EditRoleParameter,
 } from '../params/role.parameter';
 import { Menu } from '../entities/menu.entity';
-import { ErrorCodes } from '@birdgang/lib-common';
+import { CustomRpcException, ErrorCodes } from '@birdgang/lib-common';
 
 @Injectable()
 export class RoleService {
@@ -65,7 +65,7 @@ export class RoleService {
       .execute();
 
     if (mrpResult == null)
-      throw new BusinessRpcException(ErrorCodes.SYS_ERROR_001);
+      throw new CustomRpcException(ErrorCodes.SYS_ERROR_001);
 
     return 'ok';
   }
@@ -186,12 +186,12 @@ export class RoleService {
     try {
       const roleResult = await queryRunner.manager.delete(Role, { id: roleId });
       if (roleResult == null)
-        throw new BusinessRpcException(ErrorCodes.SYS_ERROR_003);
+        throw new CustomRpcException(ErrorCodes.SYS_ERROR_003);
       const mrpResult = await queryRunner.manager.delete(MenuRolePermission, {
         roleId: roleId,
       });
       if (mrpResult == null)
-        throw new BusinessRpcException(ErrorCodes.SYS_ERROR_003);
+        throw new CustomRpcException(ErrorCodes.SYS_ERROR_003);
       await queryRunner.commitTransaction();
       return 'ok';
     } catch (err) {
