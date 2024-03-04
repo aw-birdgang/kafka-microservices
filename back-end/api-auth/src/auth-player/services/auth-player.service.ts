@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { SignUpDto } from './dto/sign-up.dto';
-import { UserDto } from '../account/dto/user.dto';
+import { SignUpDto } from '../dto/sign-up.dto';
+import { UserDto } from '../../account/dto/user.dto';
 import {
   AccountMessagePatterns,
   ClientHttpException,
@@ -9,17 +9,17 @@ import {
   ErrorCodes,
   TcpRequest,
 } from '@birdgang/lib-common';
-import { LogInDto } from './dto/log-in.dto';
-import { KafkaService } from '../microservice/kafka.service';
+import { LogInDto } from '../dto/log-in.dto';
+import { KafkaService } from '../../microservice/kafka.service';
 import { isEmpty } from 'class-validator';
-import { EditTokenParameter } from '../account/params/account.parameter';
-import { JWTokenDto } from './dto/jwt-tokens.dto';
-import { ClientAccessType } from '../account/enum/account.enum';
-import { RequestRefreshTokenDto } from './dto/request-refresh-token.dto';
-import { Payload } from './dto/jwt-payload.dto';
+import { EditTokenParameter } from '../../account/params/account.parameter';
+import { JWTokenDto } from '../dto/jwt-tokens.dto';
+import { ClientAccessType } from '../../account/enum/account.enum';
+import { RequestRefreshTokenDto } from '../dto/request-refresh-token.dto';
+import { Payload } from '../dto/jwt-payload.dto';
 import bcryptjs from 'bcryptjs';
 import { format } from 'date-fns';
-import { AuthDto } from './dto/auth.dto';
+import { AuthDto } from '../dto/auth.dto';
 
 @Injectable()
 export class AuthPlayerService {

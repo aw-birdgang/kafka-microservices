@@ -1,15 +1,15 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { AuthAdminModule } from './auth-admin/auth-admin.module';
 import { AuthPlayerModule } from './auth-player/auth-player.module';
-import { AuthSellerModule } from './auth-seller/auth-seller.module';
 import { KafkaModule } from './microservice/kafka.module';
+import {ConfigModule} from "./config";
 
 @Module({
   imports: [
+    forwardRef(() => ConfigModule),
     forwardRef(() => KafkaModule),
-    forwardRef(() => AuthAdminModule),
-    forwardRef(() => AuthPlayerModule),
-    forwardRef(() => AuthSellerModule),
+    // forwardRef(() => AuthAdminModule),
+    // forwardRef(() => AuthPlayerModule),
   ],
 })
 export class AppModule {}

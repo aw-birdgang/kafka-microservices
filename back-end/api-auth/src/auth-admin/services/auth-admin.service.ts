@@ -3,9 +3,9 @@ import { JwtService } from '@nestjs/jwt';
 import bcryptjs from 'bcryptjs';
 import { isEmpty } from 'class-validator';
 import { format } from 'date-fns';
-import { KafkaService } from '../microservice/kafka.service';
-import { CreateAdminUserDto } from '../account/dto/create-admin-user.dto';
-import { AdminUserDto } from '../account/dto/admin-user.dto';
+import { KafkaService } from '../../microservice/kafka.service';
+import { CreateAdminUserDto } from '../../account/dto/create-admin-user.dto';
+import { AdminUserDto } from '../../account/dto/admin-user.dto';
 import {
   AccountMessagePatterns,
   ClientHttpException,
@@ -13,13 +13,13 @@ import {
   ErrorCodes,
   TcpRequest,
 } from '@birdgang/lib-common';
-import { LogInDto } from './dto/log-in.dto';
-import { JWTokenDto } from './dto/jwt-tokens.dto';
-import { EditTokenParameter } from '../account/params/account.parameter';
-import { ClientAccessType } from '../account/enum/account.enum';
-import { RequestRefreshTokenDto } from './dto/request-refresh-token.dto';
-import { Payload } from './dto/jwt-payload.dto';
-import { AuthDto } from './dto/auth.dto';
+import { LogInDto } from '../dto/log-in.dto';
+import { JWTokenDto } from '../dto/jwt-tokens.dto';
+import { EditTokenParameter } from '../../account/params/account.parameter';
+import { ClientAccessType } from '../../account/enum/account.enum';
+import { RequestRefreshTokenDto } from '../dto/request-refresh-token.dto';
+import { Payload } from '../dto/jwt-payload.dto';
+import { AuthDto } from '../dto/auth.dto';
 
 @Injectable()
 export class AuthAdminService {

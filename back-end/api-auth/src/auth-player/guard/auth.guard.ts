@@ -8,7 +8,7 @@ import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 import { IS_PUBLIC_KEY } from './auth.decorator';
 import { isEmpty, isNotEmpty } from 'class-validator';
-import { AuthPlayerService } from '../auth-player.service';
+import { AuthPlayerService } from '../services/auth-player.service';
 import { Payload } from '../dto/jwt-payload.dto';
 import {
   ClientHttpException,
