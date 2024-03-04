@@ -4,7 +4,5 @@ export * from './exceptions';
 export * from './microservice';
 export * from './language';
 export * from './http-client';
-export * from './messaging';
-export * from './config';
 export * from './data-validation';
 export * from './redis-cache';

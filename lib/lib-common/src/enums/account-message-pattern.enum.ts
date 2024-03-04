@@ -21,11 +21,4 @@ export enum AccountMessagePatterns {
   ACCOUNT_adminUserLogin = 'ACCOUNT_adminUserLogin',
   ACCOUNT_adminUserRefreshToken = 'ACCOUNT_adminUserRefreshToken',
   ACCOUNT_playerUserGoogleLogin = 'ACCOUNT_playerUserGoogleLogin',
-  SYSTEM_findPermissionList = 'SYSTEM_findPermissionList',
-  SYSTEM_findMenuList = 'SYSTEM_findMenuList',
-  SYSTEM_saveRole = 'SYSTEM_saveRole',
-  SYSTEM_findRole = 'SYSTEM_findRole',
-  SYSTEM_findRoleList = 'SYSTEM_findRoleList',
-  SYSTEM_editRole = 'SYSTEM_editRole',
-  SYSTEM_deleteRole = 'SYSTEM_deleteRole',
 }
