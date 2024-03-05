@@ -6,11 +6,6 @@
 nvm list
 nvm ls-remote
 
-
-
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-
 ``````
 
 
@@ -35,13 +30,9 @@ aws kafka list-clusters --region <your-region>
 aws kafka list-clusters --region ap-northeast-2 --profile <your-sso-profile-name>
 
 aws kafka get-bootstrap-brokers --cluster-arn <YourClusterArn>
-aws kafka get-bootstrap-brokers --cluster-arn arn:aws:kafka:ap-northeast-2:748611188120:cluster/mskTestCluster/a934f95f-4231-4f90-8132-71a76115c89e-2 --profile dinoh
-
-
+aws kafka get-bootstrap-brokers --cluster-arn <YourClusterArn> --profile <your-sso-profile-name>
 
 kafka-topics --list --bootstrap-server <YourBootstrapBrokers>
-
-
 
 
 ````
