@@ -6,7 +6,7 @@ import {
   KafkaServer,
   MicroserviceRpcExceptionFilter,
 } from '@birdgang/lib-common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from 'src/config';
 
 @Module({
   imports: [
@@ -18,18 +18,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           transport: Transport.KAFKA,
           options: {
             client: {
-              clientId: configService.get<string>(
-                'KAFKA_ACCOUNT_CLIENT_PREFIX',
-              ),
+              clientId: configService.get('KAFKA_ACCOUNT_CLIENT_PREFIX'),
               brokers: configService
-                .get<string>('KAFKA_BROKER_URL')
+                .get('KAFKA_BROKER_URL')
                 .split(',')
                 .sort(() => Math.random() - 0.5),
             },
             consumer: {
-              groupId: configService.get<string>(
-                'KAFKA_ACCOUNT_CONSUMER_GROUP_PREFIX',
-              ),
+              groupId: configService.get('KAFKA_ACCOUNT_CONSUMER_GROUP_PREFIX'),
             },
           },
         }),
