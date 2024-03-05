@@ -99,6 +99,23 @@ kafka-microservices/
 ``````
 
 
+
+
+## pipeline
+``````
+
+Pipeline name : kafka-microservice-pipeline
+
+Role name : AWSCodePipelineServiceRole-ap-northeast-2-kafka-microservice-pi
+
+Source provider : GitHub (Version 2)
+
+Connection name : kafka-microservice-connection
+
+
+``````
+
+
 ## 설명
 ``````
 
