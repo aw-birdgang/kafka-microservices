@@ -6,7 +6,45 @@
 nvm list
 nvm ls-remote
 
+
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+
 ``````
+
+
+## access AWS MSK Kafka
+````
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install kafka
+brew install awscli
+
+- aws configure
+
+
+- aws configure sso
+여기서 <your-sso-profile-name>은 ~/.aws/config 파일에 구성된 SSO 프로파일 이름입니다. 
+프로파일 이름을 명시하지 않았다면, 기본 프로파일이 사용됩니다. 
+명령어 실행 시 올바른 프로파일 이름을 지정하는 것이 중요합니다.
+
+- aws configure list
+
+
+aws kafka list-clusters --region <your-region>
+aws kafka list-clusters --region ap-northeast-2 --profile <your-sso-profile-name>
+
+aws kafka get-bootstrap-brokers --cluster-arn <YourClusterArn>
+aws kafka get-bootstrap-brokers --cluster-arn arn:aws:kafka:ap-northeast-2:748611188120:cluster/mskTestCluster/a934f95f-4231-4f90-8132-71a76115c89e-2 --profile dinoh
+
+
+
+kafka-topics --list --bootstrap-server <YourBootstrapBrokers>
+
+
+
+
+````
 
 
 
