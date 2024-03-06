@@ -1,6 +1,7 @@
+
 ## 구조
 ``````
-account-msa/
+account-microservice/
 ├── src/
 │   ├── auth/
 │   │   ├── auth.controller.ts
@@ -18,5 +19,13 @@ account-msa/
 ├── package.json
 └── tsconfig.json
 
+
+``````
+
+
+## codebuild
+``````
+Buildspec name - optional
+cicd/codebuild/develop/buildspec.yml
 
 ``````
