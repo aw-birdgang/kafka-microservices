@@ -28,4 +28,17 @@ account-microservice/
 Buildspec name - optional
 cicd/codebuild/develop/buildspec.yml
 
+
+Environment variables
+- AWS_ACCOUNT_ID : <>
+- IMAGE_REPO_NAME : kafka-microservices
+- DEPLOY_ENV : dev
+- IMAGE_TAG : latest
+- DOCKER_FILE_PATH : cicd/docker/develop/Dockerfile
+- CONTAINER_NAME : kafka-account-msa-container
+- S3_LOTTO_DOTENV_BUCKET_NAME : kafka-microservice-account-bucket
+- S3_PROJECT_FOLDER : kafka-microservice-account
+- PROJECT_START_SCRIPT_NAME : start:dev
+
+
 ``````
