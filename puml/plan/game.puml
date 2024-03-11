@@ -1,0 +1,46 @@
+```
+초기 설정 과정을 나타내며, 판매 가능 수량(SQ) 설정, 계정 생성, KYC(Know Your Customer) 절차 등을 포함합니다.
+
+
+1. SQ(판매 가능 수량) 초기 설정: 관리자는 관리 웹을 통해 다음 회차의 예상 판매량에 따른 SQ를 설정합니다.
+2. 계정 생성: 관리자, 에이전트, 판매자 등 필요한 모든 유형의 계정을 생성하고 관리 웹을 통해 서버에 저장 및 활성화합니다.
+3. KYC 절차 설정: 관리자는 플레이어 신원 확인 절차(KYC)를 설정하기 위해 외부 KYC 솔루션을 선택하고 관련 설정을 합니다.
+4. 로또 게임 설정: 로또 게임의 규칙, 당첨 번호 추첨 방식 등을 설정합니다.
+5. 알림 및 메시지 설정: 특정 이벤트 발생 시 플레이어, 판매자, 에이전트에게 보낼 알림 메시지 및 방법을 설정합니다.
+6. 판매 시작: 모든 초기 설정이 완료된 후, 관리자는 판매를 시작하기 위해 관리 웹을 통해 명령을 내립니다. 서버는 시스템을 판매 가능 상태로 변경합니다.
+
+```
+
+@startuml
+actor "Player" as player
+participant "Player App" as playerApp
+database "Server" as server
+participant "Lottery System" as lotterySystem
+
+== 로또 구매 ==
+player -> playerApp: 로또 구매 요청
+playerApp -> server: 티켓 구매 요청
+server --> playerApp: 티켓 발급 및 구매 영수증
+playerApp --> player: 티켓 및 영수증 확인
+
+== 게임 플레이 (번호 선택) ==
+player -> playerApp: 번호 선택 및 제출
+playerApp -> server: 선택된 번호 전송
+server --> lotterySystem: 티켓 정보 및 선택 번호 등록
+lotterySystem --> server: 티켓 상태 업데이트 (Issued)
+
+== 당첨 번호 추첨 ==
+server -> lotterySystem: 추첨 시작 요청
+lotterySystem -> lotterySystem: 당첨 번호 추첨
+lotterySystem --> server: 당첨 번호 및 결과 전송
+server -> server: 당첨 정보 업데이트
+
+== 당첨 결과 확인 ==
+player -> playerApp: 당첨 결과 요청
+playerApp -> server: 결과 요청
+server -> lotterySystem: 당첨 정보 요청
+lotterySystem --> server: 당첨 정보 전송
+server --> playerApp: 당첨 결과
+playerApp --> player: 결과 표시
+
+@enduml

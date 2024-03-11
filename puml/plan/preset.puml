@@ -1,0 +1,55 @@
+```
+회차의 다양한 상태(진행 대기, 진행 중, 추첨 대기 중, 마감 중, 상금 지급 대기 중, 상금 지급 기간, 종료)와 그에 따른 시스템 의 반응을 설명 합니다.
+
+1. 회차 생성: 새로운 로또 회차가 생성되고, 초기 설정이 완료됩니다.
+2. 진행 대기: 회차가 판매 시작을 기다리는 상태입니다.
+3. 진행 중: 로또 티켓의 판매가 진행 중인 상태입니다.
+4. 추첨 대기 중: 판매가 종료되고 추첨을 기다리는 상태입니다.
+5. 마감 중: 추첨이 완료되고, 회차의 당첨 번호 및 결과가 확정되어 가는 과정입니다.
+6. 상금 지급 대기 중: 당첨 정보가 확정되고, 상금 지급 절차가 준비되는 상태입니다.
+7. 상금 지급 기간: 당첨자들에게 상금이 지급되는 기간입니다.
+8. 종료: 회차가 완전히 종료되고, 모든 절차가 마무리된 상태입니다.
+
+```
+
+@startuml
+actor "Manager" as manager
+database "Management Web" as managementWeb
+database "Server" as server
+
+== SQ(판매 가능 수량) 초기 설정 ==
+manager -> managementWeb: SQ 초기 설정 접속
+manager -> managementWeb: 다음 회차 예상 판매량 입력
+managementWeb -> server: SQ 정보 저장
+
+== 계정 생성 ==
+manager -> managementWeb: 계정 생성 페이지 접속
+group 계정 유형별 생성
+    manager -> managementWeb: Administrator 계정 생성
+    manager -> managementWeb: Manager 계정 생성
+    manager -> managementWeb: Agent 계정 생성
+    manager -> managementWeb: Seller 계정 생성
+end
+managementWeb -> server: 계정 정보 저장 및 활성화
+
+== KYC 절차 설정 ==
+manager -> managementWeb: KYC 절차 설정 접속
+manager -> managementWeb: KYC 솔루션 선택 및 설정
+managementWeb -> server: KYC 설정 정보 저장
+
+== 로또 게임 설정 ==
+manager -> managementWeb: 게임 설정 페이지 접속
+manager -> managementWeb: 게임 규칙 및 당첨 번호 추첨 방식 설정
+managementWeb -> server: 게임 설정 정보 저장
+
+== 알림 및 메시지 설정 ==
+manager -> managementWeb: 알림 설정 페이지 접속
+manager -> managementWeb: 이벤트별 알림 메시지 및 방법 설정
+managementWeb -> server: 알림 설정 정보 저장
+
+== 판매 시작 ==
+manager -> managementWeb: 판매 시작 설정
+managementWeb -> server: 판매 시작 명령 전송
+server -> server: 판매 가능 상태로 변경
+
+@enduml

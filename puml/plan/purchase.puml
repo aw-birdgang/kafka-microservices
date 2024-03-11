@@ -1,0 +1,36 @@
+```
+현금 또는 포인트 로 로또 구매 하는 경우를 모두 포함 하여 설명 합니다.
+
+1. 현금으로 구매 시나리오에서 구매자(Player)는 판매자(Seller App)에게 로또 구매를 요청 합니다.
+판매자 앱은 서버에 판매 가능 여부를 확인합니다.
+서버는 판매 요청을 승인하고 티켓을 지급합니다.
+판매자 앱은 구매자에게 티켓과 영수증을 제공합니다.
+
+2. 포인트로 구매 시나리오에서 구매자는 플레이어 앱을 통해 로또 구매를 선택하고 포인트로 결제를 선택합니다.
+구매 수량을 선택하고 확인한 후, 플레이어 앱은 서버에 티켓 구매를 요청합니다.
+서버는 티켓을 발급하고 구매자의 포인트를 차감합니다.
+구매자는 플레이어 앱을 통해 티켓과 영수증을 확인할 수 있습니다.
+
+```
+
+@startuml
+actor "Player" as player
+participant "Player App" as playerApp
+participant "Seller App" as sellerApp
+database "Server" as server
+
+== 현금으로 구매 ==
+player -> sellerApp: 로또 구매 요청(현금)
+sellerApp -> server: 판매 요청 확인(SQ 비교)
+server --> sellerApp: 판매 승인 및 티켓 지급
+sellerApp --> player: 티켓 발급 및 영수증 제공
+
+== 포인트로 구매 ==
+player -> playerApp: 로또 구매 선택
+playerApp -> player: 포인트로 구매 선택
+player -> playerApp: 구매 수량 선택 및 컨펌
+playerApp -> server: 티켓 구매 요청
+server --> playerApp: 티켓 발급 및 포인트 차감
+playerApp --> player: 티켓 및 영수증 확인
+
+@enduml
