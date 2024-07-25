@@ -1,15 +1,6 @@
 import { Controller } from '@nestjs/common';
-import { MessagePattern } from '@nestjs/microservices';
 import { BatchJobService } from '../services/batch-job.service';
 import { RoundService } from '../../round/services/round.service';
-import {
-  GameMessagePatterns,
-  TcpRequest,
-  TcpResponse,
-} from '@birdgang/lib-common';
-import { RoundCycleParameter } from '../../game/dto/game.parameter';
-import { RoundDto } from '../../round/dto/round.dto';
-import { isEmpty } from 'class-validator';
 
 @Controller()
 export class BatchController {

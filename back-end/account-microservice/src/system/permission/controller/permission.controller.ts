@@ -1,7 +1,7 @@
-import {Controller} from '@nestjs/common';
-import {PermissionService} from '../services/permission.service';
-import {MessagePattern} from '@nestjs/microservices';
-import {SystemMessagePatterns} from "@birdgang/lib-common/dist/enums/system-message-pattern.enum";
+import { Controller } from '@nestjs/common';
+import { PermissionService } from '../services/permission.service';
+import { MessagePattern } from '@nestjs/microservices';
+import { SystemMessagePatterns } from '@birdgang/lib-common/dist/enums/system-message-pattern.enum';
 
 @Controller()
 export class PermissionController {

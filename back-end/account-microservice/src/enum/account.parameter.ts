@@ -1,6 +1,6 @@
-import { IsEnum, IsNumber, IsString } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
-import { ClientAccessType } from "./account.enum";
+import { IsEnum, IsNumber, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { ClientAccessType } from './account.enum';
 
 export class AdminUserFiltersParameter {
   @ApiProperty()
@@ -32,7 +32,11 @@ export class EditTokenParameter {
   @IsString()
   jwtRefreshToken: string;
 
-  static from(accessUserId: number, accessType: ClientAccessType, jwtRefreshToken: string) {
+  static from(
+    accessUserId: number,
+    accessType: ClientAccessType,
+    jwtRefreshToken: string,
+  ) {
     const parameter = new EditTokenParameter();
     parameter.accessUserId = accessUserId;
     parameter.accessType = accessType;

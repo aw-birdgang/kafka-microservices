@@ -1,12 +1,16 @@
-import {Injectable} from '@nestjs/common';
-import {InjectDataSource, InjectEntityManager, InjectRepository,} from '@nestjs/typeorm';
-import {DataSource, EntityManager, Repository} from 'typeorm';
-import {Role} from '../entities/role.entity';
-import {MenuRolePermission} from '../entities/menu-role-permisstion.entity';
-import {DeleteRoleParameter,} from '../params/role.parameter';
-import {Menu} from '../entities/menu.entity';
-import {CustomRpcException, ErrorCodes} from '@birdgang/lib-common';
-import {SetRoleDto} from "../dto/setRole.dto";
+import { Injectable } from '@nestjs/common';
+import {
+  InjectDataSource,
+  InjectEntityManager,
+  InjectRepository,
+} from '@nestjs/typeorm';
+import { DataSource, EntityManager, Repository } from 'typeorm';
+import { Role } from '../entities/role.entity';
+import { MenuRolePermission } from '../entities/menu-role-permisstion.entity';
+import { DeleteRoleParameter } from '../params/role.parameter';
+import { Menu } from '../entities/menu.entity';
+import { CustomRpcException, ErrorCodes } from '@birdgang/lib-common';
+import { SetRoleDto } from '../dto/setRole.dto';
 
 @Injectable()
 export class RoleService {
@@ -20,7 +24,6 @@ export class RoleService {
     return this.roleRepository.findOneBy({ id: id });
   }
 
-
   /**
    * 역할 생성
    * @param payload
@@ -30,22 +33,24 @@ export class RoleService {
     const { roleName, desc, permissionTable } = payload;
 
     const roleSaveResult = await this.roleRepository
-        .createQueryBuilder()
-        .insert()
-        .into(Role)
-        .values({
-          name: roleName,
-          description: desc,
-        })
-        .execute();
+      .createQueryBuilder()
+      .insert()
+      .into(Role)
+      .values({
+        name: roleName,
+        description: desc,
+      })
+      .execute();
 
     const roleId = roleSaveResult.generatedMaps[0].id;
 
-    const menuPermissionValues = Object.entries(permissionTable).map(([menuId, permissionIds]) => ({
-      menuId,
-      roleId,
-      permissionIds,
-    }));
+    const menuPermissionValues = Object.entries(permissionTable).map(
+      ([menuId, permissionIds]) => ({
+        menuId,
+        roleId,
+        permissionIds,
+      }),
+    );
 
     // const mrpResult = await this.mrpRepository
     //     .createQueryBuilder()
@@ -56,9 +61,8 @@ export class RoleService {
     //
     // if (mrpResult == null) throw new CustomRpcException(ErrorCodes.SYS_ERROR_001);
 
-    return "ok";
+    return 'ok';
   }
-
 
   /**
    * roleId로 검색 및 정보 얻기

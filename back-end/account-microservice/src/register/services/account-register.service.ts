@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ClientRegister } from '../entities/client-register.entity';
 import { Repository } from 'typeorm';
 import { CreateClientRegisterDto } from '../dto/create-client-register.dto';
-import {ClientAccessType} from "../../enum/account.enum";
+import { ClientAccessType } from '../../enum/account.enum';
 
 @Injectable()
 export class AccountRegisterService {

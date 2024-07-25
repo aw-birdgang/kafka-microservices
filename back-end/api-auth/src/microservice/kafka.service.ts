@@ -1,18 +1,23 @@
-import {Inject, Injectable, OnModuleDestroy, OnModuleInit,} from '@nestjs/common';
-import {ClientKafka} from '@nestjs/microservices';
-import {AccountMessagePatterns, KafkaServer,} from '@birdgang/lib-common';
-import {lastValueFrom, map} from 'rxjs';
+import {
+  Inject,
+  Injectable,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
+import { ClientKafka } from '@nestjs/microservices';
+import { AccountMessagePatterns, KafkaServer } from '@birdgang/lib-common';
+import { lastValueFrom, map } from 'rxjs';
 
 @Injectable()
 export class KafkaService implements OnModuleInit, OnModuleDestroy {
   constructor(
-      @Inject(KafkaServer.KAFKA_ACCOUNT_SERVER)
-      private readonly accountKafkaClient: ClientKafka,
+    @Inject(KafkaServer.KAFKA_ACCOUNT_SERVER)
+    private readonly accountKafkaClient: ClientKafka,
   ) {}
 
   async onModuleInit() {
     Object.values(AccountMessagePatterns).map((pattern) =>
-        this.accountKafkaClient.subscribeToResponseOf(pattern),
+      this.accountKafkaClient.subscribeToResponseOf(pattern),
     );
     await this.accountKafkaClient.connect();
   }
@@ -30,11 +35,11 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
     }
 
     return lastValueFrom(
-        this.accountKafkaClient.send<TResult>(cmd, JSON.stringify(data)).pipe(
-            map((value) => {
-              return value;
-            }),
-        ),
+      this.accountKafkaClient.send<TResult>(cmd, JSON.stringify(data)).pipe(
+        map((value) => {
+          return value;
+        }),
+      ),
     );
   }
 }

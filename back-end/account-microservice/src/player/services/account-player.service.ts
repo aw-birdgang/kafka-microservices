@@ -1,13 +1,14 @@
-import {Injectable, Logger} from '@nestjs/common';
-import {PlayerUser} from '../entities/player-user.entity';
-import {InjectRepository} from '@nestjs/typeorm';
-import {Repository} from 'typeorm';
-import {isNotEmpty} from 'class-validator';
+import { Injectable, Logger } from '@nestjs/common';
+import { PlayerUser } from '../entities/player-user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { isNotEmpty } from 'class-validator';
 
 @Injectable()
 export class AccountPlayerService {
   constructor(
-      @InjectRepository(PlayerUser) private readonly userRepository: Repository<PlayerUser>,
+    @InjectRepository(PlayerUser)
+    private readonly userRepository: Repository<PlayerUser>,
   ) {}
 
   private readonly logger = new Logger(AccountPlayerService.name);
@@ -29,5 +30,4 @@ export class AccountPlayerService {
     const user = await this.findByEmail(email);
     return isNotEmpty(user);
   }
-
 }

@@ -1,6 +1,6 @@
 import { IsEnum, IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import {ClientAccessType} from "../../enum/account.enum";
+import { ClientAccessType } from '../../enum/account.enum';
 
 export class CreateClientRegisterDto {
   @ApiProperty()

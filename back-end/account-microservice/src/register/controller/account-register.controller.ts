@@ -8,7 +8,7 @@ import {
 } from '@birdgang/lib-common';
 import { CreateClientRegisterDto } from '../dto/create-client-register.dto';
 import { ClientRegisterDto } from '../dto/client-register.dto';
-import {EditTokenParameter} from "../../enum/account.parameter";
+import { EditTokenParameter } from '../../enum/account.parameter';
 
 @Controller()
 export class AccountRegisterController {

@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { ClientRegisterDto } from '../dto/client-register.dto';
-import {ClientAccessType} from "../../enum/account.enum";
+import { ClientAccessType } from '../../enum/account.enum';
 
 @Entity('client_register')
 @Index('uk1_client_register', ['accessUserId', 'accessType'], { unique: true })

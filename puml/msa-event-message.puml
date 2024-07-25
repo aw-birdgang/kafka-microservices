@@ -1,0 +1,43 @@
+@startuml
+
+rectangle "API Gateway" as API_Gateway
+rectangle "Service Discovery" as Service_Discovery
+
+rectangle "User Service" as User_Service {
+  [User Service]
+  [User Database]
+}
+
+rectangle "Lottery Service" as Lottery_Service {
+  [Lottery Service]
+  [Lottery Database]
+}
+
+rectangle "Payment Service" as Payment_Service {
+  [Payment Service]
+  [Payment Database]
+}
+
+rectangle "Message Broker" as Message_Broker
+rectangle "Centralized Logging & Monitoring" as Centralized_Logging_Monitoring
+
+API_Gateway -down-> Service_Discovery
+
+Service_Discovery -down-> User_Service: Registers / Finds
+Service_Discovery -down-> Lottery_Service: Registers / Finds
+Service_Discovery -down-> Payment_Service: Registers / Finds
+
+User_Service -down--> Message_Broker: Sends / Receives
+Lottery_Service -down--> Message_Broker: Sends / Receives
+Payment_Service -down--> Message_Broker: Sends / Receives
+
+User_Service -down-> [User Database]: Reads / Writes
+Lottery_Service -down-> [Lottery Database]: Reads / Writes
+Payment_Service -down-> [Payment Database]: Reads / Writes
+
+Message_Broker -down-> Centralized_Logging_Monitoring: Logs / Metrics
+User_Service -down-> Centralized_Logging_Monitoring: Logs / Metrics
+Lottery_Service -down-> Centralized_Logging_Monitoring: Logs / Metrics
+Payment_Service -down-> Centralized_Logging_Monitoring: Logs / Metrics
+
+@enduml

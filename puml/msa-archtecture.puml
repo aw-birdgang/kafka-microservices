@@ -1,0 +1,73 @@
+@startuml
+!define RECTANGLE class
+skinparam rectangle {
+  BackgroundColor #DDDDDD
+  BorderColor #000000
+}
+
+rectangle API_Gateway {
+  [API Gateway] <<Gateway>>
+}
+
+rectangle Auth_Service {
+  [Auth Service] <<Service>>
+}
+
+rectangle Player_Service {
+  [Player Service] <<Service>>
+}
+
+rectangle Game_Service {
+  [Game Service] <<Service>>
+}
+
+rectangle Admin_Service {
+  [Admin Service] <<Service>>
+}
+
+rectangle Batch_Service {
+  [Batch Service] <<Service>>
+}
+
+rectangle Notification_Service {
+  [Notification Service] <<Service>>
+}
+
+rectangle Payment_Service {
+  [Payment Service] <<Service>>
+}
+
+rectangle Logging_Monitoring_Service {
+  [Logging/Monitoring Service] <<Service>>
+}
+
+rectangle Database {
+  [User DB] <<Database>>
+  [Player DB] <<Database>>
+  [Game DB] <<Database>>
+  [Admin DB] <<Database>>
+  [Batch DB] <<Database>>
+  [Notification DB] <<Database>>
+  [Payment DB] <<Database>>
+  [Logging DB] <<Database>>
+}
+
+API_Gateway --> Auth_Service: authenticate
+API_Gateway --> Player_Service: manage players
+API_Gateway --> Game_Service: play games
+API_Gateway --> Admin_Service: admin operations
+API_Gateway --> Batch_Service: batch tasks
+API_Gateway --> Notification_Service: send notifications
+API_Gateway --> Payment_Service: process payments
+API_Gateway --> Logging_Monitoring_Service: log and monitor
+
+Auth_Service --> [User DB]: manage user auth data
+Player_Service --> [Player DB]: manage player data
+Game_Service --> [Game DB]: manage game data
+Admin_Service --> [Admin DB]: manage admin data
+Batch_Service --> [Batch DB]: manage batch tasks
+Notification_Service --> [Notification DB]: manage notifications
+Payment_Service --> [Payment DB]: manage payment data
+Logging_Monitoring_Service --> [Logging DB]: manage logs
+
+@enduml

@@ -1,8 +1,12 @@
-import {Controller, Logger} from '@nestjs/common';
-import {AccountPlayerService} from '../services/account-player.service';
-import {MessagePattern, Payload} from '@nestjs/microservices';
-import {AccountMessagePatterns, TcpRequest, TcpResponse,} from '@birdgang/lib-common';
-import {AccountPlayerResponseDto} from '../dto/account-player-response.dto';
+import { Controller, Logger } from '@nestjs/common';
+import { AccountPlayerService } from '../services/account-player.service';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import {
+  AccountMessagePatterns,
+  TcpRequest,
+  TcpResponse,
+} from '@birdgang/lib-common';
+import { AccountPlayerResponseDto } from '../dto/account-player-response.dto';
 
 @Controller()
 export class AccountPlayerController {
@@ -39,5 +43,4 @@ export class AccountPlayerController {
     const user = await this.accountPlayerService.findById(request.data);
     return TcpResponse.from<string>(user.passwordHash).toString();
   }
-
 }
